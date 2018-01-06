@@ -4,22 +4,38 @@ import java.util.Date;
 
 public class MainListener {
 	
-	public static void request(String request) { // get from arduino
-		Date date = new Date();
+	public static void request(String request) throws Exception{ // get from arduino
+		if (request.indexOf(" ") == -1) return;
+		String temp = request.substring(0, request.indexOf(" ")); 
+		String[] data = new String[2];
 		
-		switch(request) {
+		switch(temp) {
 		case " ": break;
 		
-		case "ENTER room1":
-			function(request, date.toString()); // not complete yet
+		case "OPEN":
+			System.out.println("OPEN request: " + request + "  at "  + (new Date()));
+			data[0] = "Door"; data[1] = "in";
+			(new Record(data)).MakeTxt();
 			break;
 			
-		case "CLOSE light1":
-			function(request, date.toString());
+		case "CLOSE":
+			System.out.println("CLOSE request: " + request+ "  at "  + (new Date()));
+			data[0] = "Door"; data[1] = "out";
+			(new Record(data)).MakeTxt();
+			break;
+			
+		case "IN":
+			System.out.println("IN request: " + request);
+			// function ();
+			break;
+			
+		case "OUT":
+			System.out.println("OUT request: " + request);
+			// function ();
 			break;
 			
 		default:
-			System.out.println("Unkown request: " + request);
+			System.out.println("Unknown request: " + request);
 		}
 	}
 	
@@ -32,6 +48,10 @@ public class MainListener {
 		try
 	    {
 	        (new TwoWaySerialComm()).connect("COM9"); // connect USB COM9
+	        
+	        Thread sDebug = new SerialDebug();
+	        sDebug.run();
+	        
 	    }
 	    catch ( Exception e )
 	    {

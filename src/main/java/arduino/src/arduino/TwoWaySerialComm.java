@@ -41,7 +41,6 @@ public class TwoWaySerialComm {
                 out = serialPort.getOutputStream();
                  
                 (new Thread(new SerialReader(in))).start();
-//                (new Thread(new SerialWriter(out))).start();
  
             }
             else
@@ -61,7 +60,7 @@ public class TwoWaySerialComm {
         }
     }
     
-    public static class SerialReader implements Runnable 
+    public static class SerialReader implements Runnable
     {
         InputStream in;
          
@@ -84,7 +83,12 @@ public class TwoWaySerialComm {
                 		temp = new String(buffer, 0, len);
                 		if (len == 1) temp += new String(buffer, 0, len = this.in.read(buffer)); // make sure no single char
                     	if (!temp.isEmpty()) 
-                    		MainListener.request(temp);
+                    		try {
+                    			MainListener.request(temp);
+                    		}
+                    		catch (Exception e)  {
+                    			e.printStackTrace();
+                    		}
                 	}
                 }
             } 
@@ -94,34 +98,5 @@ public class TwoWaySerialComm {
             }            
         }
     }
- 
-    // no need
-    
-//    public static class SerialWriter implements Runnable 
-//    {
-//        OutputStream out;
-//         
-//        public SerialWriter ( OutputStream out )
-//        {
-//            this.out = out;
-//        }
-//         
-//        public void run ()
-//        {
-//            try
-//            {                
-//                int c = 0;
-//                while ( ( c = System.in.read()) > -1 )
-//                {
-//                    this.out.write(c);
-//                }                
-//            }
-//            catch ( IOException e )
-//            {
-//                e.printStackTrace();
-//            }            
-//        }
-//        
-//    }
      
 }
