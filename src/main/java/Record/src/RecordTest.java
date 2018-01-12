@@ -15,9 +15,7 @@ public class RecordTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DoorInput[0]="Door";
-		DoorInput[1]="in";
-		DoorRecord = new Record(DoorInput);
+		DoorRecord = new Record("Door","品中","in");
 		WrongRecord=new Record();
 	}
 	@AfterClass
@@ -27,7 +25,7 @@ public class RecordTest {
 	}
 	@Test
 	public void testDoorin() throws IOException {
-		String DoorResult=DoorInput[1]+' '+new Date()+System.getProperty("line.separator");//時間
+		String DoorResult="品中 in"+' '+new Date()+System.getProperty("line.separator");//時間
 		String DoorOutPut;
 		
 		DoorOutPut=DoorRecord.MakeTxt();
