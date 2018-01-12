@@ -163,8 +163,8 @@ public class Calculate {
 		return MAX <= w*duration();
 	}
 	
-	public static void main(String[] args) {
-		Calculate test = new Calculate();
-		System.out.println(test.needConserve());
-	}
+//	public static void main(String[] args) {
+//		Calculate test = new Calculate();
+//		System.out.println(test.needConserve());
+//	}
 }
