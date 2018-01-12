@@ -25,11 +25,10 @@ public class RecordTest {
 	}
 	@Test
 	public void testDoorin() throws IOException {
-		String DoorResult="品中 in"+' '+new Date()+System.getProperty("line.separator");//時間
+		String DoorResult="品中 in"+' '+new Date()+System.getProperty("line.separator")+"Access Success"+"\n"+"Door in"+' '+new Date()+System.getProperty("line.separator")+"Access Success";//時間
 		String DoorOutPut;
 		
 		DoorOutPut=DoorRecord.MakeTxt();
-		System.out.println();
 		assertEquals(DoorResult,DoorOutPut);
 	}
 	@Test
