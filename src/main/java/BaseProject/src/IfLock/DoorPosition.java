@@ -32,5 +32,6 @@ public class DoorPosition {
 		
 		this.Status = Status;
 	}
+	
 
 }

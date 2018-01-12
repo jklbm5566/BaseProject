@@ -1,5 +1,6 @@
 package IfLock;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,6 +9,7 @@ public class PeopleInOut {
 	private String UserId;
 	private boolean status = true;
 	private ArrayList<DoorPosition> Door = new ArrayList<DoorPosition>();
+	public Record record;
 	
 	/* Constructors */
 	public PeopleInOut (String UserId) {
@@ -73,20 +75,20 @@ public class PeopleInOut {
 		return null;
 	}
 	
-	public void Check(String Input) throws InterruptedException {
+	public void Check(String Input) throws InterruptedException, IOException {
 		
 		if(Select(Input)!=null) {
 			WaitMinute(Input);
 			if(Select(Input).getStatus()==getStatus()) {
-				
+				record = new Record(Select(Input).getDoorName(), getID(), "Out");
 				ChangeStatus();
-				//record
+				record.MakeTxt();
 				System.out.println(Input + " " + getID() + " Out");
 			}
 			else {
-				
+				record = new Record(Select(Input).getDoorName(), getID(), "Out");
 				ChangeStatus();
-				//record
+				record.MakeTxt();
 				System.out.println(Input + " " + getID() + " In");
 			}
 		}

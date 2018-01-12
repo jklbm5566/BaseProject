@@ -2,12 +2,14 @@ package IfLock;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 public class DoorPositionTest {
 
 	@Test
-	public void Resettest() throws InterruptedException {
+	public void Resettest() throws InterruptedException, IOException {
 		
 		DoorPosition door_1 = new DoorPosition("door_1", true);
 		DoorPosition door_2 = new DoorPosition("door_3", true);
@@ -23,10 +25,11 @@ public class DoorPositionTest {
 		
 		door_2.setStatus(false);
 		door_2.setDoorName("door_2");
-		/* 更新 */
 		
+		/* 更新 */
 		IECS.resetDoor(door_2);
 		Chris.resetDoor(door_2);
+		
 		assertEquals(false, IECS.Select("door_2").getStatus());
 		assertEquals(false, Chris.Select("door_2").getStatus());
 		assertEquals("door_2", IECS.Select("door_2").getDoorName());
@@ -40,7 +43,7 @@ public class DoorPositionTest {
 	}
 	
 	@Test
-	public void Accessormutatortest() throws InterruptedException {
+	public void Accessormutatortest() throws InterruptedException, IOException {
 		PeopleInOut IECS = new PeopleInOut("IECS");
 		DoorPosition test1 = new DoorPosition("door_2", false);
 		DoorPosition test2 = new DoorPosition("door_2", false);
