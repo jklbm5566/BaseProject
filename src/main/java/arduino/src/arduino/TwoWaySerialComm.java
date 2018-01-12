@@ -21,46 +21,31 @@ public class TwoWaySerialComm {
         super();
     }
      
-    void connect ( String portName ) throws Exception
+    public void connect ( String portName ) throws Exception
     {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
-        if ( portIdentifier.isCurrentlyOwned() )
-        {
-            System.out.println("Error: Port is currently in use");
-        }
-        else
-        {
-            CommPort commPort = portIdentifier.open(this.getClass().getName(),2000);
-             
-            if ( commPort instanceof SerialPort )
-            {
-                SerialPort serialPort = (SerialPort) commPort;
-                serialPort.setSerialPortParams(9600,SerialPort.DATABITS_8,SerialPort.STOPBITS_1,SerialPort.PARITY_NONE);
-                 
-                in = serialPort.getInputStream();
-                out = serialPort.getOutputStream();
-                 
-                (new Thread(new SerialReader(in))).start();
- 
-            }
-            else
-            {
-                System.out.println("Error: Only serial ports are handled by this example.");
-            }
-        }     
+
+        CommPort commPort = portIdentifier.open(this.getClass().getName(),2000);
+
+        SerialPort serialPort = (SerialPort) commPort;
+        serialPort.setSerialPortParams(9600,SerialPort.DATABITS_8,SerialPort.STOPBITS_1,SerialPort.PARITY_NONE);
+         
+        in = serialPort.getInputStream();
+        out = serialPort.getOutputStream();
+         
+        (new Thread(new SerialReader(in))).start();
+
+     
     }
      
-    public static void pass(String data) {
-    	try {         
-    		for (int i = 0; i < data.length(); i++) out.write(data.charAt(i));
-    		out.write('\n');
-        }
-        catch ( IOException e ) {
-            e.printStackTrace();
-        }
+    public static void pass(String data) throws IOException{
+      
+		for (int i = 0; i < data.length(); i++) out.write(data.charAt(i));
+		out.write('\n');
+        
     }
     
-    public static class SerialReader implements Runnable
+    public static class SerialReader implements Runnable 
     {
         InputStream in;
          
@@ -69,7 +54,7 @@ public class TwoWaySerialComm {
             this.in = in;
         }
          
-        public void run ()
+        public void run()
         {
             byte[] buffer = new byte[1024];
             String temp;
@@ -95,7 +80,7 @@ public class TwoWaySerialComm {
             catch ( IOException e )
             {
                 e.printStackTrace();
-            }            
+            }           
         }
     }
      

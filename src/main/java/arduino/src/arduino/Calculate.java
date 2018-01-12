@@ -20,7 +20,7 @@ public class Calculate {
 	
 	/*有可能會需要修改文字檔檔案名稱,如果完全沒必要盪時候會全部刪除*/
 	/*File Path setting method*/
-	public void setPath(String path) {
+	public void setPath(String path) { 
 		if(path.compareTo(".txt")<0) path = path + ".txt";
 		this.path = path;
 	}
