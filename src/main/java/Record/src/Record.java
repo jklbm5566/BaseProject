@@ -39,13 +39,13 @@ public class Record {
 			textOutputfurniture = new FileWriter (outputFilePathfurniture,true);
 			textOutputuser = new FileWriter (outputFilePathuser,true);
 
-			inputThingfurniture=inputuser+" "+inputThingfurniture+' '+new Date()+System.getProperty("line.separator");
-			textOutputfurniture.write(inputThingfurniture);
+			inputThingfurniture=inputuser+" "+inputThingfurniture+' '+new Date()+" ";
+			textOutputfurniture.write(inputThingfurniture+ System.getProperty("line.separator"));
 			System.out.print(inputThingfurniture);
 			System.out.println("Access Success");
 			
-			inputThinguser=inputFilePath+" "+inputThinguser+' '+new Date()+System.getProperty("line.separator");
-			textOutputuser.write(inputThinguser);
+			inputThinguser=inputFilePath+" "+inputThinguser+' '+new Date()+" ";
+			textOutputuser.write(inputThinguser + System.getProperty("line.separator"));
 			System.out.print(inputThinguser);
 			System.out.println("Access Success");
 			

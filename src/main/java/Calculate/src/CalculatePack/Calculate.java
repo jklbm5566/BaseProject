@@ -125,7 +125,7 @@ public class Calculate {
 				}
 			}
 			/*time[3]={"hour=[0]","min=[1]","sec=[2]"} */
-			else if(i%7==4) {
+			else if(i%8==4) {
 				StringTokenizer st = new StringTokenizer(part[i],":");
 				if(i>=7) {
 					for(int t=0;t<time.length;t++) {
