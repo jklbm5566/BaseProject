@@ -86,7 +86,7 @@ public class PeopleInOut {
 				System.out.println(Input + " " + getID() + " Out");
 			}
 			else {
-				record = new Record(Select(Input).getDoorName(), getID(), "Out");
+				record = new Record(Select(Input).getDoorName(), getID(), "In");
 				ChangeStatus();
 				record.MakeTxt();
 				System.out.println(Input + " " + getID() + " In");
