@@ -9,12 +9,18 @@ public class KeyboardControl extends Thread {
         String cmd;
         
         while (true) {
-        	cmd = keyboard.nextLine();
-        	if (cmd.equals("END")) break;
-        	else 
-        		MainListener.remote(cmd);
-            
-        }	
+        	try {
+        		cmd = keyboard.nextLine();
+            	if (cmd.equals("END")) break;
+            	else {
+               		MainListener.remote(cmd);
+               		MainListener.userA.Check(cmd);
+                
+            	}
+            } catch (Exception e) {
+            	e.printStackTrace();
+            }
+        }
         keyboard.close();
 	}
 }

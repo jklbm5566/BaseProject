@@ -1,13 +1,18 @@
 package IfLock;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import arduino.MainListener;
+import arduino.Record;
 
 public class PeopleInOut {
 	
 	private String UserId;
 	private boolean status = true;
 	private ArrayList<DoorPosition> Door = new ArrayList<DoorPosition>();
+	public Record record;
 	
 	/* Constructors */
 	public PeopleInOut (String UserId) {
@@ -65,7 +70,7 @@ public class PeopleInOut {
 		Object list[] = getDoor().toArray();
 		DoorPosition[] door = Arrays.copyOf(list, list.length, DoorPosition[].class);
 		
-		for(int i=0; i<door.length; i++) {
+		for(int i=0; i<door.length; i++) {//select
 			if(door[i].getDoorName().equals(doorname)) {
 				return door[i];
 			}
@@ -73,21 +78,21 @@ public class PeopleInOut {
 		return null;
 	}
 	
-	public void Check(String Input) throws InterruptedException {
+	public void Check(String Input) throws InterruptedException, IOException {
 		
 		if(Select(Input)!=null) {
 			WaitMinute(Input);
 			if(Select(Input).getStatus()==getStatus()) {
-				
+				record = new Record(Select(Input).getDoorName(), getID(), "Out");
 				ChangeStatus();
-				//record
-				System.out.println(Input + " " + getID() + " Out");
+				record.MakeTxt();
+//				System.out.println(Input + " " + getID() + " Out");
 			}
 			else {
-				
+				record = new Record(Select(Input).getDoorName(), getID(), "In");
 				ChangeStatus();
-				//record
-				System.out.println(Input + " " + getID() + " In");
+				record.MakeTxt();
+//				System.out.println(Input + " " + getID() + " In");
 			}
 		}
 		else System.out.println("Have a Problem!");
@@ -96,10 +101,10 @@ public class PeopleInOut {
 	public void WaitMinute(String name) throws InterruptedException {
 		
 		System.out.println("Open!" + name);
-		//remote("Open", name);
-		Thread.sleep(1000);
+		MainListener.remote("OPEN " + name);
+		Thread.sleep(5000);
 		System.out.println("Close!" + name);
-		//remote("Close", name);
+		MainListener.remote("CLOSE " + name);
 	}
 
 }

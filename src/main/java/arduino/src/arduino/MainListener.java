@@ -2,6 +2,7 @@ package arduino;
 
 import java.io.IOException;
 
+import CalculatePack.Calculate;
 import IfLock.*;
 
 public class MainListener {
@@ -22,47 +23,52 @@ public class MainListener {
 	// get from arduino
 	public static void request(String request) throws InterruptedException, IOException {
 		if (request.indexOf(" ") <= 0) return;
+		
 		String temp = request.substring(0, request.indexOf(" ")); 
-		String[] data = new String[2];
 		
 		switch(temp) {
 		
 		case "CHECK":
 			System.out.println("CHECK request: " + request);
 			userA.Check(request.substring(request.indexOf(" ") + 1));
+			if ((new Calculate()).needConserve()) remote("ALERT 5"); // blink red led
 			break;
 			
-		case "OPEN":
-			System.out.println("OPEN request: " + request);
-			data[0] = "Door"; data[1] = "in";
-			(new Record(data)).MakeTxt();
-			break;
-			
-		case "CLOSE":
-			System.out.println("CLOSE request: " + request);
-			data[0] = "Door"; data[1] = "out";
-			(new Record(data)).MakeTxt();
-			break;
-			
-		case "IN":
-			System.out.println("IN request: " + request);
-			userA.Check("Door1");
-			break;
-			
-		case "OUT":
-			System.out.println("OUT request: " + request);
-			userA.Check("Door1"); 
-			break;
-			
-		default:
+		case "LED":
 			System.out.println(request);
+			break;
+			
+//		case "OPEN":
+//			System.out.println("OPEN request: " + request);
+//			break;
+//			
+//		case "CLOSE":
+//			System.out.println("CLOSE request: " + request);
+//			break;
+//			
+//		case "IN":
+//			System.out.println("IN request: " + request);
+//			userA.Check("Door1");
+//			break;
+//			
+//		case "OUT":
+//			System.out.println("OUT request: " + request);
+//			userA.Check("Door1"); 
+//			break;
+//			
+//		default:
+//			System.out.println(request);
 		}
 		
-		if ((new Calculate()).needConserve()) remote("ALERT 5"); // blink red led
+		
 	}
 	
 	// send to arduino 
 	public static void remote(String data) { 
+		
+		data = data.replaceFirst("Door1", "3");
+		data = data.replaceFirst("Door2", "4");
+		
 		try {
 			TwoWaySerialComm.pass(data);
 		} catch (IOException e) {
@@ -74,7 +80,6 @@ public class MainListener {
 	public static void main(String[] args) throws Exception{
 		new MainListener();
         (new TwoWaySerialComm()).connect("COM9"); // connect USB COM9
-
         (new KeyboardControl()).run();
 	}
 	
