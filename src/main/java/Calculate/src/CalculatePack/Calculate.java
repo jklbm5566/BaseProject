@@ -10,9 +10,15 @@ public class Calculate {
 	private int deep;//txt的深度 
 	private String[] part;
 	
-	Calculate() {
-		path = "Door.txt";
-		deep = 0;
+//	public Calculate() {
+//		path = "Test_12.txt";
+//		deep = 0;
+//		Fileopen();
+//		TOKEN();
+//	}
+	
+	public Calculate(String path) {
+		setPath(path);
 		Fileopen();
 		TOKEN();
 	}
@@ -20,7 +26,8 @@ public class Calculate {
 	/*有可能會需要修改文字檔檔案名稱,如果完全沒必要盪時候會全部刪除*/
 	/*File Path setting method*/
 	public void setPath(String path) {
-		if(path.compareTo(".txt")<0) path = path + ".txt";
+//		if(path==null) return;
+//		if(path.compareTo(".txt")<0) path = path + ".txt";
 		this.path = path;
 	}
 	/*File Path editing method*/
@@ -65,8 +72,8 @@ public class Calculate {
 					if(i%8==7) {
 						du=(365*24);
 						if(isLeapYear(part[i])) du+=24;
-					}
-					else if(i%8==3) {
+					
+					}else if(i%8==3) {
 						if(part[i].equals("Jan")) month=1;
 						else if(part[i].equals("Feb")) month=2;
 						else if(part[i].equals("Mar")) month=3;
@@ -85,8 +92,8 @@ public class Calculate {
 							else if(mon==2 && isLeapYear(part[i+4])) du+=(29*24);
 							else if(mon==2 && !isLeapYear(part[i+4])) du+=(28*24); 
 						}
-					}
-					else if(i%8==4) {
+					
+					}else if(i%8==4) {
 						int day = 0;
 						day = Integer.parseInt(part[i]);
 						for(int da=1;da<day+1;da++) du+=24;
@@ -96,8 +103,8 @@ public class Calculate {
 					if(i%8==7) {
 						du-=(365*24);
 						if(isLeapYear(part[i])) du-=24;
-					}
-					else if(i%8==3) {
+					
+					}else if(i%8==3) {
 						if(part[i].equals("Jan")) month=1;
 						else if(part[i].equals("Feb")) month=2;
 						else if(part[i].equals("Mar")) month=3;
@@ -116,8 +123,8 @@ public class Calculate {
 							else if(mon==2 && isLeapYear(part[i+4])) du-=(29*24);
 							else if(mon==2 && !isLeapYear(part[i+4])) du-=(28*24); 
 						}
-					}
-					else if(i%8==4) {
+					
+					}else if(i%8==4) {
 						int day = 0;
 						day = Integer.parseInt(part[i]);
 						for(int da=1;da<day+1;da++) du-=24;
@@ -125,7 +132,7 @@ public class Calculate {
 				}
 			}
 			/*time[3]={"hour=[0]","min=[1]","sec=[2]"} */
-			else if(i%8==4) {
+			else if(i%8==5) {
 				StringTokenizer st = new StringTokenizer(part[i],":");
 				if(i>=8) {
 					for(int t=0;t<time.length;t++) {
@@ -162,9 +169,5 @@ public class Calculate {
 		int w = 100, MAX = 2401;
 		return MAX <= w*duration();
 	}
-	
-//	public static void main(String[] args) {
-//		Calculate test = new Calculate();
-//		System.out.println(test.needConserve());
-//	}
+
 }
