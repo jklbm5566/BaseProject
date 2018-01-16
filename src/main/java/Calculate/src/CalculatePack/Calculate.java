@@ -85,7 +85,7 @@ public class Calculate {
 						else if(part[i].equals("Sep")) month=9;
 						else if(part[i].equals("Oct")) month=10;
 						else if(part[i].equals("Nov")) month=11;
-						else if(part[i].equals("Dec")) month=12;
+						else month=12;
 						for(int mon=1;mon<=month;mon++) {
 							if(mon==1||mon==3||mon==5||mon==7||mon==8||mon==10||mon==12) du+=(31*24);
 							else if(mon==4||mon==6||mon==9||mon==11) du+=(30*24);
@@ -116,7 +116,7 @@ public class Calculate {
 						else if(part[i].equals("Sep")) month=9;
 						else if(part[i].equals("Oct")) month=10;
 						else if(part[i].equals("Nov")) month=11;
-						else if(part[i].equals("Dec")) month=12;
+						else month=12;
 						for(int mon=1;mon<=month;mon++) {
 							if(mon==1||mon==3||mon==5||mon==7||mon==8||mon==10||mon==12) du-=(31*24);
 							else if(mon==4||mon==6||mon==9||mon==11) du-=(30*24);

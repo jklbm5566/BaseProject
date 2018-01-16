@@ -8,102 +8,32 @@ import org.junit.jupiter.api.Test;
 import CalculatePack.Calculate;
 
 class calculateTest {
-	public static Calculate Test;
-//	@BeforeAll
-//	static void setUpBeforeClass() throws Exception {
-//		Test = new Calculate("Test_12.txt");
-//	}
-
+	public static Calculate[] Test;
+	@BeforeAll
+	public static void setUpBeforeClass() throws Exception {
+		Test = new Calculate[13];
+		Test[0] = new Calculate("Test_12.txt");
+		for(int i=1;i<Test.length;i++) {
+			if(i<10) Test[i] = new Calculate("Test_0"+i+".txt");
+			else Test[i] = new Calculate("Test_"+i+".txt");
+		}
+	}
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		Test.setPath(null);
+		for(int i=0;i<Test.length;i++) {
+			Test[i].setPath(null);
+		}
 	}
-
-//	@BeforeEach
-//	void setUp() throws Exception {
-//	}
-//
-//	@AfterEach
-//	void tearDown() throws Exception {
-//	}
-//
 	@Test
-	void test_Jan() {
+	void test_calculate() {
+		String S = "Test_12.txt";
+		assertEquals(Test[0].getPath(),S);
+	}
+	@Test
+	void test_Month() {
 		boolean Test_status = false;
-		Test = new Calculate("Test_01.txt");
-		assertEquals(Test.needConserve(),Test_status);		
-	}
-	
-	@Test
-	void test_Feb() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_02.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Mar() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_03.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Apr() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_04.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_May() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_05.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Jun() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_06.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Jul() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_07.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Aug() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_08.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Sep() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_09.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Oct() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_10.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Nov() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_11.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_Dec() {
-		boolean Test_status = false;
-		Test = new Calculate("Test_12.txt");
-		assertEquals(Test.needConserve(),Test_status);	
-	}
-	@Test
-	void test_getPath() {
-		Test = new Calculate("Test_12.txt");
-		String testS = "Test_12.txt";
-		assertEquals(Test.getPath(),testS);	
+		for(int i=1;i<Test.length;i++) {
+			assertEquals(Test[i].needConserve(),Test_status);	
+		}
 	}
 }
