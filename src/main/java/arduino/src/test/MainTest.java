@@ -10,6 +10,7 @@ class MainTest {
 
 	@Test
 	void test() throws Exception {
+		new MainListener();
 		MainListener.main(null);
 	}
 	
