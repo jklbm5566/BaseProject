@@ -7,20 +7,27 @@ import java.util.StringTokenizer;
 public class Calculate {
 	private String path; //File path
 	private Scanner FileInput;//File
-	private int deep;//txtçš„æ·±åº¦ 
+	private int deep;//txtªº²`«× 
 	private String[] part;
 	
-	public Calculate() {
-		path = "Door1.txt";
-		deep = 0;
+//	public Calculate() {
+//		path = "Test_12.txt";
+//		deep = 0;
+//		Fileopen();
+//		TOKEN();
+//	}
+	
+	public Calculate(String path) {
+		setPath(path);
 		Fileopen();
 		TOKEN();
 	}
 	
-	/*æœ‰å¯èƒ½æœƒéœ€è¦ä¿®æ”¹æ–‡å­—æª”æª”æ¡ˆåç¨±,å¦‚æœå®Œå…¨æ²’å¿…è¦ç›ªæ™‚å€™æœƒå…¨éƒ¨åˆªé™¤*/
+	/*¦³¥i¯à·|»İ­n­×§ï¤å¦rÀÉÀÉ®×¦WºÙ,¦pªG§¹¥ş¨S¥²­nÀú®É­Ô·|¥ş³¡§R°£*/
 	/*File Path setting method*/
 	public void setPath(String path) {
-		if(path.compareTo(".txt")<0) path = path + ".txt";
+//		if(path==null) return;
+//		if(path.compareTo(".txt")<0) path = path + ".txt";
 		this.path = path;
 	}
 	/*File Path editing method*/
@@ -65,8 +72,8 @@ public class Calculate {
 					if(i%8==7) {
 						du=(365*24);
 						if(isLeapYear(part[i])) du+=24;
-					}
-					else if(i%8==3) {
+					
+					}else if(i%8==3) {
 						if(part[i].equals("Jan")) month=1;
 						else if(part[i].equals("Feb")) month=2;
 						else if(part[i].equals("Mar")) month=3;
@@ -78,15 +85,15 @@ public class Calculate {
 						else if(part[i].equals("Sep")) month=9;
 						else if(part[i].equals("Oct")) month=10;
 						else if(part[i].equals("Nov")) month=11;
-						else if(part[i].equals("Dec")) month=12;
+						else month=12;
 						for(int mon=1;mon<=month;mon++) {
 							if(mon==1||mon==3||mon==5||mon==7||mon==8||mon==10||mon==12) du+=(31*24);
 							else if(mon==4||mon==6||mon==9||mon==11) du+=(30*24);
 							else if(mon==2 && isLeapYear(part[i+4])) du+=(29*24);
 							else if(mon==2 && !isLeapYear(part[i+4])) du+=(28*24); 
 						}
-					}
-					else if(i%8==4) {
+					
+					}else if(i%8==4) {
 						int day = 0;
 						day = Integer.parseInt(part[i]);
 						for(int da=1;da<day+1;da++) du+=24;
@@ -96,8 +103,8 @@ public class Calculate {
 					if(i%8==7) {
 						du-=(365*24);
 						if(isLeapYear(part[i])) du-=24;
-					}
-					else if(i%8==3) {
+					
+					}else if(i%8==3) {
 						if(part[i].equals("Jan")) month=1;
 						else if(part[i].equals("Feb")) month=2;
 						else if(part[i].equals("Mar")) month=3;
@@ -109,15 +116,15 @@ public class Calculate {
 						else if(part[i].equals("Sep")) month=9;
 						else if(part[i].equals("Oct")) month=10;
 						else if(part[i].equals("Nov")) month=11;
-						else if(part[i].equals("Dec")) month=12;
+						else month=12;
 						for(int mon=1;mon<=month;mon++) {
 							if(mon==1||mon==3||mon==5||mon==7||mon==8||mon==10||mon==12) du-=(31*24);
 							else if(mon==4||mon==6||mon==9||mon==11) du-=(30*24);
 							else if(mon==2 && isLeapYear(part[i+4])) du-=(29*24);
 							else if(mon==2 && !isLeapYear(part[i+4])) du-=(28*24); 
 						}
-					}
-					else if(i%8==4) {
+					
+					}else if(i%8==4) {
 						int day = 0;
 						day = Integer.parseInt(part[i]);
 						for(int da=1;da<day+1;da++) du-=24;
@@ -125,9 +132,9 @@ public class Calculate {
 				}
 			}
 			/*time[3]={"hour=[0]","min=[1]","sec=[2]"} */
-			else if(i%7==4) {
+			else if(i%8==5) {
 				StringTokenizer st = new StringTokenizer(part[i],":");
-				if(i>=7) {
+				if(i>=8) {
 					for(int t=0;t<time.length;t++) {
 						time[t]=Integer.parseInt(st.nextToken());
 						if(t==0) du+=time[t];
@@ -159,8 +166,8 @@ public class Calculate {
 	/*consider whether power conservation or not*/
 	public boolean needConserve() {
 		/* W = w * time, if W>=MAX return true , else return false */
-		int w = 100, MAX = -1;
+		int w = 100, MAX = 2401;
 		return MAX <= w*duration();
 	}
-}
 
+}
