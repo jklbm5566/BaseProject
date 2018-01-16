@@ -127,7 +127,7 @@ public class Calculate {
 			/*time[3]={"hour=[0]","min=[1]","sec=[2]"} */
 			else if(i%8==4) {
 				StringTokenizer st = new StringTokenizer(part[i],":");
-				if(i>=7) {
+				if(i>=8) {
 					for(int t=0;t<time.length;t++) {
 						time[t]=Integer.parseInt(st.nextToken());
 						if(t==0) du+=time[t];
@@ -163,8 +163,8 @@ public class Calculate {
 		return MAX <= w*duration();
 	}
 	
-//	public static void main(String[] args) {
-//		Calculate test = new Calculate();
-//		System.out.println(test.needConserve());
-//	}
+	public static void main(String[] args) {
+		Calculate test = new Calculate();
+		System.out.println(test.needConserve());
+	}
 }
