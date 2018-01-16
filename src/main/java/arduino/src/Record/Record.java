@@ -1,4 +1,4 @@
-package arduino;
+package Record;
 
 import java.io.FileWriter;
 import java.io.IOException;

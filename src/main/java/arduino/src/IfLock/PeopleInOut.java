@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import arduino.MainListener;
-import arduino.Record;
+import Main.MainListener;
+import Record.Record;
 
 public class PeopleInOut {
 	
@@ -104,7 +104,7 @@ public class PeopleInOut {
 		MainListener.remote("OPEN " + name);
 		Thread.sleep(5000);
 		System.out.println("Close!" + name);
-		MainListener.remote("CLOSE " + name);
+		MainListener.remote("CLOSE " + name); 
 	}
 
 }
