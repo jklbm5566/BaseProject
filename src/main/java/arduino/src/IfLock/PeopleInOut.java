@@ -12,7 +12,7 @@ public class PeopleInOut {
 	private String UserId;
 	private boolean status = true;
 	private ArrayList<DoorPosition> Door = new ArrayList<DoorPosition>();
-	public Record record;
+	public Record record=new Record();
 	
 	/* Constructors */
 	public PeopleInOut (String UserId) {

@@ -17,12 +17,10 @@ public class KeyboardControl extends Thread {
             	else {
                		MainListener.remote(cmd);
                		MainListener.userA.Check(cmd);
-               		if ((new Calculate()).needConserve()) MainListener.remote("ALERT 5"); // blink red led
+               		if ((new Calculate("Door1.txt")).needConserve()) MainListener.remote("ALERT 5"); // blink red led
                 
             	}
-            } catch (Exception e) {
-
-            }
+            } catch (Exception e) { }
         }
         keyboard.close();
 	}

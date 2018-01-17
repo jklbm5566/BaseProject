@@ -1,7 +1,5 @@
 package test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Main.MainListener;
@@ -12,16 +10,7 @@ class MainTest {
 	void test() throws Exception {
 		new MainListener();
 		MainListener.main(null);
+//		MainListener.remote("OPEN 5");
 	}
 	
-	@BeforeEach
-	void setUp() throws Exception {
-		
-	}
-	
-
-	@AfterEach
-	void tearDown() throws Exception {
-		
-	}
 }

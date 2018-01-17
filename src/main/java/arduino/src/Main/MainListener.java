@@ -22,7 +22,7 @@ public class MainListener {
 	
 	// get from arduino
 	public static void request(String request) throws InterruptedException, IOException {
-		if (request.indexOf(" ") <= 0) return;
+//		if (request.indexOf(" ") <= 0) return;
 		
 		String temp = request.substring(0, request.indexOf(" ")); 
 		
@@ -31,7 +31,7 @@ public class MainListener {
 		case "CHECK":
 			System.out.println("CHECK request: " + request);
 			userA.Check(request.substring(request.indexOf(" ") + 1));
-			if ((new Calculate()).needConserve()) remote("ALERT 5"); // blink red led
+			if ((new Calculate("Door1.txt")).needConserve()) remote("ALERT 5"); // blink red led 
 			break;
 			
 		case "LED":
@@ -49,12 +49,8 @@ public class MainListener {
 		data = data.replaceFirst("door_1", "3");
 		data = data.replaceFirst("door_2", "4");
 		
-		try {
-			TwoWaySerialComm.pass(data);
-		} catch (IOException e) {
-
-		}
 		
+		TwoWaySerialComm.pass(data);
 	}
 	
 	public static void main(String[] args) throws Exception{

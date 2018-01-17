@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 public class Calculate {
 	private String path; //File path
 	private Scanner FileInput;//File
-	private int deep;//txtªº²`«× 
+	private int deep;//txtï¿½ï¿½ï¿½`ï¿½ï¿½ 
 	private String[] part;
 	
 //	public Calculate() {
@@ -23,7 +23,7 @@ public class Calculate {
 		TOKEN();
 	}
 	
-	/*¦³¥i¯à·|»İ­n­×§ï¤å¦rÀÉÀÉ®×¦WºÙ,¦pªG§¹¥ş¨S¥²­nÀú®É­Ô·|¥ş³¡§R°£*/
+	/*ï¿½ï¿½ï¿½iï¿½ï¿½|ï¿½İ­nï¿½×§ï¿½ï¿½rï¿½ï¿½ï¿½É®×¦Wï¿½ï¿½,ï¿½pï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½nï¿½ï¿½ï¿½É­Ô·|ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½*/
 	/*File Path setting method*/
 	public void setPath(String path) {
 //		if(path==null) return;
@@ -166,7 +166,7 @@ public class Calculate {
 	/*consider whether power conservation or not*/
 	public boolean needConserve() {
 		/* W = w * time, if W>=MAX return true , else return false */
-		int w = 100, MAX = 2401;
+		int w = 100, MAX = -1;
 		return MAX <= w*duration();
 	}
 

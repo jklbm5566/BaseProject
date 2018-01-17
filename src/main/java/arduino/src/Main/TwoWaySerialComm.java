@@ -36,11 +36,12 @@ public class TwoWaySerialComm {
      
     }
      
-    public static void pass(String data) throws IOException{
+    public static void pass(String data) {
     	
-		for (int i = 0; i < data.length(); i++) out.write(data.charAt(i));
-		out.write('\n');
-        
+    	try {
+    		for (int i = 0; i < data.length(); i++) out.write(data.charAt(i));
+    		out.write('\n');
+    	} catch (IOException e) { } 
     }
     
     public static class SerialReader implements Runnable 
